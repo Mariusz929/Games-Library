@@ -17,6 +17,16 @@ public class Screenshot {
     @Lob
     private byte[] file;
 
+    public Screenshot() {
+    }
+
+    public Screenshot(String title, Game game, AppUser user, byte[] file) {
+        this.title = title;
+        this.game = game;
+        this.user = user;
+        this.file = file;
+    }
+
     public long getId() {
         return id;
     }

@@ -17,6 +17,16 @@ public class Tutorial {
     @Lob
     private byte[] pdfFile;
 
+    public Tutorial() {
+    }
+
+    public Tutorial(String title, Game game, AppUser user, byte[] pdfFile) {
+        this.title = title;
+        this.game = game;
+        this.user = user;
+        this.pdfFile = pdfFile;
+    }
+
     public long getId() {
         return id;
     }

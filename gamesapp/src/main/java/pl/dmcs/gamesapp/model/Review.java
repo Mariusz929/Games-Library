@@ -15,6 +15,15 @@ public class Review {
     private Game game;
     private String text;
 
+    public Review() {
+    }
+
+    public Review(Game game, AppUser user, String text) {
+        this.game = game;
+        this.user = user;
+        this.text = text;
+    }
+
     public long getId() {
         return id;
     }

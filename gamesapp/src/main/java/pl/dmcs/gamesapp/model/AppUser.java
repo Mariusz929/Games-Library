@@ -15,7 +15,7 @@ public class AppUser {
     private String login;
     private String password;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany
     @JoinTable(
             name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id")},
@@ -51,6 +51,16 @@ public class AppUser {
             orphanRemoval = true
     )
     private Set<Tutorial> tutorials = new HashSet<>();
+
+    public AppUser() {
+    }
+
+    public AppUser(String email, String login, String password, Set<Role> roles) {
+        this.email = email;
+        this.login = login;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public long getId() {
         return id;
