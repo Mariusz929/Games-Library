@@ -1,5 +1,7 @@
 package pl.dmcs.gamesapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -123,6 +125,7 @@ public class Game {
         this.thumbnail = thumbnail;
     }
 
+    @JsonIgnore
     public Set<Screenshot> getScreenshots() {
         return screenshots;
     }
@@ -131,6 +134,7 @@ public class Game {
         this.screenshots = screenshots;
     }
 
+    @JsonIgnore
     public Set<Review> getReviews() {
         return reviews;
     }
@@ -139,6 +143,7 @@ public class Game {
         this.reviews = reviews;
     }
 
+    @JsonIgnore
     public Set<Tutorial> getTutorials() {
         return tutorials;
     }
@@ -147,6 +152,7 @@ public class Game {
         this.tutorials = tutorials;
     }
 
+    @JsonIgnore
     public Set<AppUser> getUsers() {
         return users;
     }

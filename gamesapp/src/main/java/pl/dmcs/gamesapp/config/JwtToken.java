@@ -3,6 +3,7 @@ package pl.dmcs.gamesapp.config;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Set;
 import java.util.function.Function;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,6 +14,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import pl.dmcs.gamesapp.model.AppUser;
+import pl.dmcs.gamesapp.model.Role;
 
 @Component
 public class JwtToken implements Serializable {
@@ -22,7 +24,7 @@ public class JwtToken implements Serializable {
     public static final String HEADER_STRING = "Authorization";
 
     public String generateToken(AppUser user) {
-        return doGenerateToken(user.getLogin());
+        return doGenerateToken(user.getLogin(), user.getRoles());
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
@@ -55,9 +57,9 @@ public class JwtToken implements Serializable {
                 .getBody();
     }
 
-    private String doGenerateToken(String subject) {
+    private String doGenerateToken(String subject, Set<Role> subjectRoles) {
         Claims claims = Jwts.claims().setSubject(subject);
-        claims.put("scopes", Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+        claims.put("scopes", Collections.singletonList(new SimpleGrantedAuthority(subjectRoles.iterator().next().getName())));
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -67,5 +69,4 @@ public class JwtToken implements Serializable {
                 .signWith(SignatureAlgorithm.HS256, SIGNING_KEY)
                 .compact();
     }
-
 }

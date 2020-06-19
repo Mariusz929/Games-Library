@@ -1,5 +1,7 @@
 package pl.dmcs.gamesapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +17,7 @@ public class AppUser {
     private String login;
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id")},
@@ -86,6 +88,7 @@ public class AppUser {
         this.login = login;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -94,6 +97,7 @@ public class AppUser {
         this.password = password;
     }
 
+    @JsonIgnore
     public Set<Role> getRoles() {
         return roles;
     }
@@ -102,6 +106,7 @@ public class AppUser {
         this.roles = roles;
     }
 
+    @JsonIgnore
     public Set<Game> getFovourites() {
         return favorites;
     }
@@ -110,6 +115,7 @@ public class AppUser {
         this.favorites = fovourites;
     }
 
+    @JsonIgnore
     public Set<Screenshot> getScreenshots() {
         return screenshots;
     }
@@ -118,6 +124,7 @@ public class AppUser {
         this.screenshots = screenshots;
     }
 
+    @JsonIgnore
     public Set<Review> getReviews() {
         return reviews;
     }
@@ -126,6 +133,7 @@ public class AppUser {
         this.reviews = reviews;
     }
 
+    @JsonIgnore
     public Set<Tutorial> getTutorials() {
         return tutorials;
     }

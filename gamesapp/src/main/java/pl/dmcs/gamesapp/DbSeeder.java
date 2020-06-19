@@ -71,7 +71,8 @@ public class DbSeeder implements CommandLineRunner {
         Set<Game> favGames = new HashSet<>(Arrays.asList(game1, game2));
         testUser.setFovourites(favGames);
         testUser2.setFovourites(Collections.singleton(game1));
-        appUserService.addAll(Arrays.asList(testUser, testUser2));
+        appUserService.updateOne(testUser);
+        appUserService.updateOne(testUser2);
 
         //TESTING PURPOSE
         Set<Review> reviewList = gameService.getOne(6).getReviews();

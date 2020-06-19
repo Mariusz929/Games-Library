@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/token/*").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/users").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/").permitAll()
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
@@ -52,7 +53,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class)
+                .logout()
+                .logoutUrl("/logout");
     }
 
 }

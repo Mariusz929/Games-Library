@@ -27,7 +27,6 @@ public class AppUserService implements CRUDService<AppUser>, UserDetailsService 
     @Autowired
     RoleRepository roleRepository;
 
-    //TODO password encryption
     @Override
     public void addOne(AppUser user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -58,7 +57,6 @@ public class AppUserService implements CRUDService<AppUser>, UserDetailsService 
 
     @Override
     public void updateOne(AppUser user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         appUserRepository.save(user);
     }
 
@@ -81,7 +79,7 @@ public class AppUserService implements CRUDService<AppUser>, UserDetailsService 
         return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), getAuthority(user));
     }
 
-    private Collection<GrantedAuthority> getAuthority(AppUser user) {
+    public Collection<GrantedAuthority> getAuthority(AppUser user) {
         Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         for (Role role : user.getRoles()) {
             GrantedAuthority authority = new SimpleGrantedAuthority(role.getName());
