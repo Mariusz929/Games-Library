@@ -14,4 +14,8 @@ export class UserService {
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl + '/users');
   }
+
+  public save(user: User) {
+    return this.http.post<String>(this.userUrl + '/register', user, {observe: 'response'})
+  }
 }

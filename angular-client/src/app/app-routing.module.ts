@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {UserComponent} from "./user/user.component";
 import {LoginComponent} from "./login/login.component";
+import {RegisterComponent} from "./register/register.component";
 import {AccessForbiddenComponent} from "./access-forbidden/access-forbidden.component";
 import {AuthGuard} from "./core/auth.guard";
 
@@ -12,6 +13,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {role: 'ROLE_ADMIN'}
   },
+  {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: '', component: LoginComponent},
   {path: 'access-denied', component: AccessForbiddenComponent},

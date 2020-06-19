@@ -88,7 +88,6 @@ public class AppUser {
         this.login = login;
     }
 
-    @JsonIgnore
     public String getPassword() {
         return password;
     }

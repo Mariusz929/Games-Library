@@ -15,6 +15,7 @@ import pl.dmcs.gamesapp.repository.RoleRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Service(value = "userService")
@@ -30,6 +31,9 @@ public class AppUserService implements CRUDService<AppUser>, UserDetailsService 
     @Override
     public void addOne(AppUser user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if(user.getRoles().isEmpty()){
+            user.setRoles(Collections.singleton(roleRepository.findByName("ROLE_REGULAR_USER")));
+        }
         appUserRepository.save(user);
     }
 

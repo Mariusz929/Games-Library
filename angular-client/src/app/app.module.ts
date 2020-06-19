@@ -14,13 +14,15 @@ import { UserService } from './user/user.service';
 import { UserComponent } from './user/user.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AccessForbiddenComponent } from './access-forbidden/access-forbidden.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserComponent,
-    AccessForbiddenComponent
+    AccessForbiddenComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
