@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {UserService} from "../user/user.service";
@@ -8,8 +8,9 @@ import {User} from "../user/user.model";
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html'
-  // styleUrls: ['./register.component.css']
+  encapsulation: ViewEncapsulation.None,
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
 
@@ -27,7 +28,7 @@ export class RegisterComponent {
         if (response.status == 200) {
           this.toastr.success("pomyślnie zarejestrowano konto: " + this.username);
         } else this.toastr.error("niepowodzenie");
-          }
+      }
     )
 
 

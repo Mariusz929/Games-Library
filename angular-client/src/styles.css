@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+  font-family: "Comic Sans MS";
+  font-style: italic;
+  color: #dfeaec;
+  min-height: 100%;
+  background: linear-gradient(143deg, #6d5577, #593456, #4d596b) 0% 0% / 200% 200%;
+  background-size: 300% 300%;
+  animation: gradient 22s ease infinite;
+  color: #dfeaec;
+}
+.footer {
+  height:55px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-shadow: inset 1px 1px 10px #000000C4;
+  color: #d6d6d6;
+  text-align: center;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 17% 0%;
+  }
+  50% {
+    background-position: 84% 100%;
+  }
+  100% {
+    background-position: 17% 0%;
+  }
+}

@@ -1,19 +1,26 @@
 <div class="container">
   <div class="row">
-    <form>
+    <form class="form-register">
+      <h3>Register Account</h3>
+      <br>
       <div class="form-group">
         <label for="inputEmail">Email</label>
-        <input type="text" class="form-control" id="inputEmail" placeholder="Enter login" [(ngModel)]="email" name="email">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Enter login" [(ngModel)]="email"
+               name="email">
       </div>
       <div class="form-group">
         <label for="inputLogin">Login</label>
-        <input type="text" class="form-control" id="inputLogin" placeholder="Enter login" [(ngModel)]="username" name="username">
+        <input type="text" class="form-control" id="inputLogin" placeholder="Enter login" [(ngModel)]="username"
+               name="username">
       </div>
       <div class="form-group">
         <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="password" name="password">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="password"
+               name="password">
       </div>
-      <button class="btn btn-primary" (click)="register()">Login</button>
+      <div class="register-button">
+        <button class="btn btn-primary" (click)="register()">Sign Up</button>
+      </div>
     </form>
   </div>
 </div>

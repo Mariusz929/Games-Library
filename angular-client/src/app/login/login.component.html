@@ -1,15 +1,21 @@
 <div class="container">
   <div class="row">
-    <form>
+    <form class="form-signin">
+      <h3>Sign In</h3>
+      <br>
       <div class="form-group">
         <label for="inputLogin">Login</label>
-        <input type="text" class="form-control" id="inputLogin" placeholder="Enter login" [(ngModel)]="username" name="username">
+        <input type="text" class="form-control" id="inputLogin" placeholder="Enter login" [(ngModel)]="username"
+               name="username">
       </div>
       <div class="form-group">
         <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="password" name="password">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="password"
+               name="password">
       </div>
-      <button class="btn btn-primary" (click)="login()">Login</button>
+      <div class="login-button">
+        <button class="btn btn-primary" (click)="login()">Login</button>
+      </div>
     </form>
   </div>
 </div>

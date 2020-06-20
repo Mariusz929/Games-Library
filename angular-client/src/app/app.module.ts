@@ -6,15 +6,16 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import { AuthService } from './core/auth.service';
-import { Interceptor } from './core/interceptor';
-import { TokenStorage } from './core/token.storage';
-import { LoginComponent } from './login/login.component';
-import { UserService } from './user/user.service';
-import { UserComponent } from './user/user.component';
-import { ToastrModule } from 'ngx-toastr';
-import { AccessForbiddenComponent } from './access-forbidden/access-forbidden.component';
-import { RegisterComponent } from './register/register.component';
+import {AuthService} from './core/auth.service';
+import {Interceptor} from './core/interceptor';
+import {TokenStorage} from './core/token.storage';
+import {LoginComponent} from './login/login.component';
+import {UserService} from './user/user.service';
+import {UserComponent} from './user/user.component';
+import {ToastrModule} from 'ngx-toastr';
+import {AccessForbiddenComponent} from './access-forbidden/access-forbidden.component';
+import {RegisterComponent} from './register/register.component';
+import {NavbarComponent} from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     UserComponent,
     AccessForbiddenComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
