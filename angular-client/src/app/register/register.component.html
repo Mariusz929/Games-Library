@@ -1,26 +1,45 @@
 <div class="container">
-  <div class="row">
-    <form class="form-register">
-      <h3>Register Account</h3>
-      <br>
-      <div class="form-group">
-        <label for="inputEmail">Email</label>
-        <input type="text" class="form-control" id="inputEmail" placeholder="Enter login" [(ngModel)]="email"
-               name="email">
+  <h3 *ngIf="isValidFormSubmitted" [ngClass]="'success'">
+    {{successMessage}}
+  </h3>
+  <form class="form-register" #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+    <h3>Register Account</h3>
+    <br>
+    <div class="form-group">
+      <label for="inputEmail">Email</label>
+      <input type="text" class="form-control" id="inputEmail" placeholder="Enter email" [(ngModel)]="email"
+             required [pattern]="emailPattern" #valEmail="ngModel" name="email">
+      <div *ngIf="valEmail.errors && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+        <div *ngIf="valEmail.errors.required">
+          Email is required.
+        </div>
+        <div *ngIf="valEmail.errors.pattern">
+          Email not valid.
+        </div>
       </div>
-      <div class="form-group">
-        <label for="inputLogin">Login</label>
-        <input type="text" class="form-control" id="inputLogin" placeholder="Enter login" [(ngModel)]="username"
-               name="username">
+    </div>
+    <div class="form-group">
+      <label for="inputLogin">Login</label>
+      <input type="text" class="form-control" id="inputLogin" placeholder="Enter login" [(ngModel)]="username"
+             required #valLogin="ngModel" name="username">
+      <div *ngIf="valLogin.errors && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+        <div *ngIf="valLogin.errors.required">
+          Login is required.
+        </div>
       </div>
-      <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="password"
-               name="password">
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="password"
+             required minlength="6" #valPass="ngModel" name="password">
+      <div *ngIf="valPass.errors && userForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+        <div *ngIf="valPass.errors.minlength || valPass.errors.required">
+          Password be at least 6 characters.
+        </div>
       </div>
-      <div class="register-button">
-        <button class="btn btn-primary" (click)="register()">Sign Up</button>
-      </div>
-    </form>
-  </div>
+    </div>
+    <div class="register-button">
+      <button type="submit" value="Submit" class="btn btn-primary">Sign Up</button>
+    </div>
+  </form>
 </div>

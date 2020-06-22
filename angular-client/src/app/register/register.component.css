@@ -22,7 +22,7 @@ input[type="text"] {
 }
 
 input[type="password"] {
-  margin-bottom: 40px;
+  margin-bottom: 0px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
@@ -32,6 +32,7 @@ h3 {
 }
 
 .register-button{
+  margin-top: 40px;
   text-align:  center;
 }
 

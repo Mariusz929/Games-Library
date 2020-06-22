@@ -8,6 +8,14 @@ body{
   animation: gradient 22s ease infinite;
   color: #dfeaec;
 }
+
+.error {
+  color: red;
+}
+.success {
+  color: #1cb11c;
+}
+
 .footer {
   height:55px;
   position: fixed;

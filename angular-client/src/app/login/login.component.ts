@@ -13,20 +13,24 @@ import {HttpClient} from "@angular/common/http";
 })
 export class LoginComponent {
 
+  isFormSubmitted = false;
+
   username: string;
   password: string;
+  errorMessage: string;
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService, private token: TokenStorage, private toastr: ToastrService) {
   }
 
   login(): void {
+    this.isFormSubmitted = true;
     this.authService.attemptAuth(this.username, this.password).subscribe(
       data => {
         if (data != null) {
           this.token.saveToken(data.token);
           this.authService.findRoles();
           this.router.navigate(['user']);
-        } else this.toastr.error("nieprawidłowy login lub hasło")
+        } else this.errorMessage ="Nieprawidłowy login lub hasło";
       }
     );
   }

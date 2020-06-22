@@ -45,6 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/token/*").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/games").permitAll()
                 .antMatchers("/users").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/").permitAll()
                 .and()

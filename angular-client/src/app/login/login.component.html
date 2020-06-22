@@ -1,5 +1,7 @@
 <div class="container">
-  <div class="row">
+    <h3 *ngIf="isFormSubmitted" [ngClass]="'error'">
+      {{errorMessage}}
+    </h3>
     <form class="form-signin">
       <h3>Sign In</h3>
       <br>
@@ -17,5 +19,4 @@
         <button class="btn btn-primary" (click)="login()">Login</button>
       </div>
     </form>
-  </div>
 </div>
