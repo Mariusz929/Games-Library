@@ -2,7 +2,7 @@
   background: linear-gradient(143deg, #4d596b, #593456, #6d5577) 0% 0% / 200% 200%;
   background-size: 300% 300%;
   animation: gradient 22s ease infinite;
-  max-width: 420px;
+  max-width: 640px;
   padding: 10px 38px 46px;
   margin: 100px auto;
   border: 2px solid #f28b00;
@@ -31,12 +31,12 @@ h3 {
   text-align: center;
 }
 
-.row {
+.card-row {
   margin-top: 40px;
 }
 
 .card {
-  background-color: #434343;
+  background-color: #4c465d;
   border: 2px solid #f28b00;
   border-style: outset;
   border-radius: 8px;

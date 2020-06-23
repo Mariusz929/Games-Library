@@ -11,6 +11,11 @@ import pl.dmcs.gamesapp.service.AppUserService;
 import pl.dmcs.gamesapp.service.GameService;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -33,9 +38,21 @@ public class GameController {
     Set<Game> geMytGames() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         AppUser user = appUserService.getOne(auth.getName());
-        System.out.println(auth.getName());
-        System.out.println(user.getLogin());
         return user.getFovourites();
+    }
+
+    @GetMapping(value = "/upcoming")
+    List<Game> geUpcomingGames() throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy");
+        Date currentDate = new Date();
+        df.format(currentDate);
+        List<Game> result = new ArrayList<>();
+        for (Game game : gameService.getAll()) {
+            if (df.parse(game.getReleaseDate()).after(currentDate)) {
+                result.add(game);
+            }
+        }
+        return result;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)

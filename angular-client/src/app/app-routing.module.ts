@@ -16,6 +16,7 @@ const routes: Routes = [
   },
   {path: 'games', component: GameListComponent},
   {path: 'my-games', component: GameListComponent},
+  {path: 'upcoming', component: GameListComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: '', component: LoginComponent},

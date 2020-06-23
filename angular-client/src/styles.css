@@ -15,6 +15,8 @@ body {
 
 .success {
   color: #1cb11c;
+  margin-top: 35px;
+  margin-bottom: -35px;
 }
 
 .card-title {

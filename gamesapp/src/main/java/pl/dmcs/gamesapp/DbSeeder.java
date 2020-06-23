@@ -42,8 +42,8 @@ public class DbSeeder implements CommandLineRunner {
         AppUser testAdmin = new AppUser("admin@mail.com", "admin", "admin", Collections.singleton(adminRole));
         appUserService.addAll(Arrays.asList(testUser, testUser2, testAdmin));
 
-        Game game1 = new Game("diablo 2", "aRPG", "ktoś", "ktoś2", "super gra", "2001-2-1", null);
-        Game game2 = new Game("test", "RTS", "ktoś3", "ktoś2", "fajna gra", "2005-2-1", null);
+        Game game1 = new Game("diablo 2", "aRPG", "ktoś", "ktoś2", "super gra", "01/11/2021", null);
+        Game game2 = new Game("test", "RTS", "ktoś3", "ktoś2", "fajna gra", "01/11/2018", null);
         gameService.addAll(Arrays.asList(game1, game2));
 
         Rate rate1 = new Rate(game1, testUser, 5);

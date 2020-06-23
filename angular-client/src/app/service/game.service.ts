@@ -20,6 +20,10 @@ export class GameService {
     return this.http.get<Game[]>(this.gameUrl + "/my-games");
   }
 
+  public getUpcomingGames(): Observable<Game[]> {
+    return this.http.get<Game[]>(this.gameUrl + "/upcoming");
+  }
+
   public save(game: Game) {
     return this.http.post<String>(this.gameUrl + '/add', game, {observe: 'response'})
   }

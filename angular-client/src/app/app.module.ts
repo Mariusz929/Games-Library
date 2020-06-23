@@ -16,8 +16,13 @@ import {ToastrModule} from 'ngx-toastr';
 import {AccessForbiddenComponent} from './component/access-forbidden/access-forbidden.component';
 import {RegisterComponent} from './component/register/register.component';
 import {NavbarComponent} from './component/navbar/navbar.component';
-import { GameListComponent } from './component/game-list/game-list.component';
+import {GameListComponent} from './component/game-list/game-list.component';
 import {GameService} from "./service/game.service";
+import {ContactModalComponent} from './component/contact-modal/contact-modal.component';
+import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {MessageService} from "./service/message.service";
+import { GamePageComponent } from './component/game-page/game-page.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,9 @@ import {GameService} from "./service/game.service";
     AccessForbiddenComponent,
     RegisterComponent,
     NavbarComponent,
-    GameListComponent
+    GameListComponent,
+    ContactModalComponent,
+    GamePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,9 +42,11 @@ import {GameService} from "./service/game.service";
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgbDatepickerModule,
+    NgbModule
   ],
-  providers: [UserService, AuthService, TokenStorage, TokenStorage, GameService,
+  providers: [ContactModalComponent, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

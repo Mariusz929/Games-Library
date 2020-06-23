@@ -31,12 +31,17 @@ export class GameListComponent implements OnInit {
 
   ngOnInit() {
     this.displayList();
-    console.log(this.router.url);
   }
 
   displayList() {
     if (this.router.url == "/my-games") {
       this.gameService.getMyGames().subscribe(
+        data => {
+          this.dataSource = data;
+        }
+      );
+    } else if (this.router.url == "/upcoming") {
+      this.gameService.getUpcomingGames().subscribe(
         data => {
           this.dataSource = data;
         }
@@ -62,7 +67,6 @@ export class GameListComponent implements OnInit {
   }
 
   addGame() {
-    console.log(this.gameInput);
     this.gameService.save(this.gameInput).subscribe(
       response => {
         if (response.status == 200) {
