@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-default">
+  <a class="navbar-brand" href="#">GamesLib</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+          aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/games">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Upcoming</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/games">Game List</a>
+      </li>
+      <li *ngIf="authService.userLoggedIn()" class="nav-item">
+        <a class="nav-link" href="my-games">My games</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Tutorials</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+      </li>
+    </ul>
+    <ul *ngIf="authService.userLoggedIn()" class="nav navbar-nav navbar-right">
+      <li class="nav-item">
+        <a class="nav-link" href="/login" (click)="authService.logOut()">Logout</a>
+      </li>
+    </ul>
+    <ul *ngIf="!authService.userLoggedIn()" class="nav navbar-nav navbar-right">
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Sign in</a>
+      </li>
+    </ul>
+    <ul *ngIf="!authService.userLoggedIn()" class="nav navbar-nav navbar-right">
+      <li class="nav-item">
+        <a class="nav-link" href="/register">Register</a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -9,13 +9,15 @@ import {AppComponent} from './app.component';
 import {AuthService} from './core/auth.service';
 import {Interceptor} from './core/interceptor';
 import {TokenStorage} from './core/token.storage';
-import {LoginComponent} from './login/login.component';
-import {UserService} from './user/user.service';
-import {UserComponent} from './user/user.component';
+import {LoginComponent} from './component/login/login.component';
+import {UserService} from './service/user.service';
+import {UserComponent} from './component/user/user.component';
 import {ToastrModule} from 'ngx-toastr';
-import {AccessForbiddenComponent} from './access-forbidden/access-forbidden.component';
-import {RegisterComponent} from './register/register.component';
-import {NavbarComponent} from './navbar/navbar.component';
+import {AccessForbiddenComponent} from './component/access-forbidden/access-forbidden.component';
+import {RegisterComponent} from './component/register/register.component';
+import {NavbarComponent} from './component/navbar/navbar.component';
+import { GameListComponent } from './component/game-list/game-list.component';
+import {GameService} from "./service/game.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {NavbarComponent} from './navbar/navbar.component';
     UserComponent,
     AccessForbiddenComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    GameListComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import {NavbarComponent} from './navbar/navbar.component';
     FormsModule,
     ToastrModule.forRoot()
   ],
-  providers: [UserService, AuthService, TokenStorage, TokenStorage,
+  providers: [UserService, AuthService, TokenStorage, TokenStorage, GameService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {TokenStorage} from "./token.storage";
+import {Router} from "@angular/router";
 
 const DECODED_ROLES = 'userRole';
 
@@ -10,7 +11,7 @@ export class AuthService {
 
   redirectURL: string;
 
-  constructor(private http: HttpClient, private token: TokenStorage) {
+  constructor(private http: HttpClient, private router: Router, private token: TokenStorage) {
   }
 
   attemptAuth(username: string, password: string): Observable<any> {
@@ -49,5 +50,11 @@ export class AuthService {
   userCanAccessPageWithRole(role: string) {
     const userRole: string = sessionStorage.getItem('userRole');
     return role != null && userRole.includes((role));
+  }
+
+  public logOut() {
+    sessionStorage.removeItem('AuthToken');
+    sessionStorage.removeItem('userRole');
+    this.http.get<any>('http://localhost:8080/logout');
   }
 }

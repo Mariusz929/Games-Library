@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from '../core/auth.service';
-import {TokenStorage} from '../core/token.storage';
+import {AuthService} from '../../core/auth.service';
+import {TokenStorage} from "../../core/token.storage";
 import {ToastrService} from 'ngx-toastr';
 import {HttpClient} from "@angular/common/http";
 
@@ -29,16 +29,9 @@ export class LoginComponent {
         if (data != null) {
           this.token.saveToken(data.token);
           this.authService.findRoles();
-          this.router.navigate(['user']);
-        } else this.errorMessage ="Nieprawidłowy login lub hasło";
+          this.router.navigate(['/games']);
+        } else this.errorMessage = "Nieprawidłowy login lub hasło";
       }
     );
   }
-
-  public logOut() {
-    sessionStorage.removeItem('AuthToken');
-    this.router.navigate(['login']);
-    this.http.get<any>('http://localhost:8080/logout');
-  }
-
 }

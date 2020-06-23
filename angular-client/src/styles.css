@@ -1,4 +1,4 @@
-body{
+body {
   font-family: "Comic Sans MS";
   font-style: italic;
   color: #dfeaec;
@@ -12,12 +12,29 @@ body{
 .error {
   color: red;
 }
+
 .success {
   color: #1cb11c;
 }
 
+.card-title {
+  color: #baad7b;
+  cursor: pointer;
+}
+
+.text-gold {
+  color: #baad7b;
+}
+
+.container {
+  margin-bottom: 200px;
+}
+
 .footer {
-  height:55px;
+  background: linear-gradient(143deg, #6d5577, #593456, #4d596b) 0% 0% / 200% 200%;
+  background-size: 300% 300%;
+  animation: gradient 22s ease infinite;
+  height: 55px;
   position: fixed;
   left: 0;
   bottom: 0;

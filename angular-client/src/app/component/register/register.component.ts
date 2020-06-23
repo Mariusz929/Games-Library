@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {UserService} from "../user/user.service";
-import {TokenStorage} from "../core/token.storage";
+import {UserService} from "../../service/user.service";
+import {TokenStorage} from "../../core/token.storage";
 import {ToastrService} from "ngx-toastr";
 import {NgForm} from '@angular/forms';
 
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-    let user = {id: null, email: this.email, login: this.username, password: this.password, test: 'heh'};
+    let user = {id: null, email: this.email, login: this.username, password: this.password};
     this.userService.save(user).subscribe(
       response => {
         if (response.status == 200) {

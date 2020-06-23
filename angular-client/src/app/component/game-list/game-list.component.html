@@ -1,0 +1,129 @@
+<div class="container">
+
+  <!-- ADD GAME COLLAPSE SPOILER-->
+  <div *ngIf="authService.userLoggedIn() && authService.isAdmin() && !router.url.includes('my-games')" class="text-center">
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+            aria-expanded="false" aria-controls="collapseExample">
+      Add game to library
+    </button>
+  </div>
+  <div class="collapse" id="collapseExample">
+    <h3 *ngIf="isGameAdded" [ngClass]="'success'">
+      {{successMessage}}
+    </h3>
+    <form *ngIf=" authService.userLoggedIn() && authService.isAdmin() && !router.url.includes('my-games')" class="form-gameAdd" #gameForm="ngForm" (ngSubmit)="onFormSubmit(gameForm)">
+      <h3>Add new game to library</h3>
+      <br>
+      <div class="form-group">
+        <label for="inputName">Name</label>
+        <input type="text" class="form-control" id="inputName" placeholder="Title" [(ngModel)]="gameInput.name"
+               required #valName="ngModel" name="name">
+        <div *ngIf="valName.errors && gameForm.submitted && !isGameAdded" [ngClass]="'error'">
+          <div *ngIf="valName.errors.required">
+            Field is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputGenre">Genre</label>
+        <input type="text" class="form-control" id="inputGenre" placeholder="Enter genre" [(ngModel)]="gameInput.genre"
+               required #valGenre="ngModel" required name="genre">
+        <div *ngIf="valGenre.errors && gameForm.submitted && !isGameAdded" [ngClass]="'error'">
+          <div *ngIf="valGenre.errors.required">
+            Field is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputProducer">Producer</label>
+        <input type="text" class="form-control" id="inputProducer" placeholder="Producer"
+               [(ngModel)]="gameInput.producer"
+               required #valProd="ngModel" name="producer">
+        <div *ngIf="valProd.errors && gameForm.submitted && !isGameAdded" [ngClass]="'error'">
+          <div *ngIf="valProd.errors.required">
+            Field is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputDistributor">Distributor</label>
+        <input type="text" class="form-control" id="inputDistributor" placeholder="Distributor"
+               [(ngModel)]="gameInput.distributor"
+               required #valDist="ngModel" name="distributor">
+        <div *ngIf="valDist.errors && gameForm.submitted && !isGameAdded" [ngClass]="'error'">
+          <div *ngIf="valDist.errors.required">
+            Field is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputDate">Release Date</label>
+        <input type="text" class="form-control" id="inputDate" placeholder="Release Date"
+               [(ngModel)]="gameInput.releaseDate"
+               required #valDate="ngModel" name="date">
+        <div *ngIf="valDate.errors && gameForm.submitted && !isGameAdded" [ngClass]="'error'">
+          <div *ngIf="valDate.errors.required">
+            Field is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputDescription">Description</label>
+        <input type="text" class="form-control" id="inputDescription" placeholder="Description"
+               [(ngModel)]="gameInput.description"
+               required #valDesc="ngModel" name="description">
+        <div *ngIf="valDesc.errors && gameForm.submitted && !isGameAdded" [ngClass]="'error'">
+          <div *ngIf="valDesc.errors.required">
+            Field is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputThumbnail">Thumbnail</label>
+        <input type="file" accept="image/*" (change)="changeListener($event)" class="form-control" id="inputThumbnail"
+               name="thumbnail">
+      </div>
+      <img *ngIf="gameInput.thumbnail != null" src="{{image}}" alt="..." class="img-thumbnail">
+      <div class="submit-button">
+        <button class="btn btn-primary">Add Game</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- GAME LIST -->
+  <div *ngFor="let game of dataSource; let i = index; let even = even;">
+    <div *ngIf="even" class="row">
+
+      <div class="col-md-6">
+        <div class="card-deck">
+          <div class="card">
+            <img class="card-img-top" (click)="gameRedirect(game.id)" src="{{game.thumbnail}}" alt="Card image cap">
+            <div class="card-body">
+              <h3 (click)="gameRedirect(game.id)" class="card-title">{{game.name}}</h3>
+              <p class="card-text">Producent: {{game.producer}}</p>
+              <p class="card-text">Wydawca: {{game.distributor}}</p>
+              <p class="card-text"><small class="text-gold">Data pramiery gry: {{game.releaseDate}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="dataSource[i+1] != null" class="col-md-6">
+        <div class="card-deck">
+          <div class="card">
+            <img class="card-img-top" (click)="gameRedirect(dataSource[i+1].id)" src="{{dataSource[i+1].thumbnail}}"
+                 alt="Card image cap">
+            <div class="card-body">
+              <h3 (click)="gameRedirect(dataSource[i+1].id)" class="card-title">{{dataSource[i + 1].name}}</h3>
+              <p class="card-text">Producent: {{dataSource[i + 1].producer}}</p>
+              <p class="card-text">Wydawca: {{dataSource[i + 1].distributor}}</p>
+              <p class="card-text"><small class="text-gold">Data pramiery gry: {{dataSource[i + 1].releaseDate}}</small>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

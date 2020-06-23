@@ -21,7 +21,7 @@ public class Game {
     private String description;
     private String releaseDate;
     @Lob
-    private byte[] thumbnail;
+    private String thumbnail;
 
     @OneToMany(
             mappedBy = "game",
@@ -31,7 +31,7 @@ public class Game {
     private Set<Screenshot> screenshots = new HashSet<>();
 
     @OneToMany(
-            fetch = FetchType.EAGER, //temporary?
+            fetch = FetchType.EAGER,
             mappedBy = "game",
             cascade = CascadeType.ALL,
             orphanRemoval = true
@@ -51,7 +51,7 @@ public class Game {
     public Game() {
     }
 
-    public Game(String name, String genre, String producer, String distributor, String description, String releaseDate, byte[] thumbnail) {
+    public Game(String name, String genre, String producer, String distributor, String description, String releaseDate, String thumbnail) {
         this.name = name;
         this.genre = genre;
         this.producer = producer;
@@ -117,11 +117,11 @@ public class Game {
         this.releaseDate = releaseDate;
     }
 
-    public byte[] getThumbnail() {
+    public String getThumbnail() {
         return thumbnail;
     }
 
-    public void setThumbnail(byte[] thumbnail) {
+    public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
 
