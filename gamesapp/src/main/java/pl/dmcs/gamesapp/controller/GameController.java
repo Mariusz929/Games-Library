@@ -38,7 +38,7 @@ public class GameController {
     Set<Game> geMytGames() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         AppUser user = appUserService.getOne(auth.getName());
-        return user.getFovourites();
+        return user.getFavourites();
     }
 
     @GetMapping(value = "/upcoming")

@@ -69,8 +69,8 @@ public class DbSeeder implements CommandLineRunner {
 
         //ADDING FAVORITES
         Set<Game> favGames = new HashSet<>(Arrays.asList(game1, game2));
-        testUser.setFovourites(favGames);
-        testUser2.setFovourites(Collections.singleton(game1));
+        testUser.setFavourites(favGames);
+        testUser2.setFavourites(Collections.singleton(game1));
         appUserService.updateOne(testUser);
         appUserService.updateOne(testUser2);
 

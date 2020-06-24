@@ -1,13 +1,16 @@
+<ng-template #content let-modal>
+  <app-user-edit-modal></app-user-edit-modal>
+</ng-template>
 <div class="container">
   <div class="row">
-    <table id="dtBasicExample" class="table table-dark">
+    <input type="text" id="myInput" (keyup)="tableService.filterFunc(1)" placeholder="Search for emails..">
+    <table id="myTable" class="display table table-dark" style="width:100%">
       <thead>
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Login</th>
         <th scope="col">Email</th>
-        <th></th>
-        <th></th>
+        <th scope="col">Command</th>
       </tr>
       </thead>
       <tbody>
@@ -16,10 +19,8 @@
         <td>{{user.login}}</td>
         <td>{{user.email}}</td>
         <td>
-          <button class="btn btn-primary">Edit</button>
-        </td>
-        <td>
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-primary btn-command" (click)="openModal(user)">Edit</button>
+          <button class="btn btn-danger btn-command" (click)="deleteUser(user.id)">Delete</button>
         </td>
       </tr>
       </tbody>

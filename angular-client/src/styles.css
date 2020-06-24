@@ -9,6 +9,10 @@ body {
   color: #dfeaec;
 }
 
+.btn-command {
+  margin-right: 20px;
+}
+
 .error {
   color: red;
 }
@@ -43,6 +47,14 @@ body {
   width: 100%;
   box-shadow: inset 1px 1px 10px #000000C4;
   color: #d6d6d6;
+  text-align: center;
+}
+
+th{
+  font-size: 17px;
+}
+
+th, td, tr {
   text-align: center;
 }
 

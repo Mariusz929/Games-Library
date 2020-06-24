@@ -6,10 +6,14 @@ import pl.dmcs.gamesapp.model.AppUser;
 import pl.dmcs.gamesapp.model.Game;
 import pl.dmcs.gamesapp.model.Rate;
 
+import java.util.List;
+
 @Repository
 public interface RateRepository extends JpaRepository<Rate, Long> {
 
     Rate findById(long id);
 
-    Rate findAllByGameAndUser(Game game, AppUser user);
+    List<Rate> findAllByGameAndUser(Game game, AppUser user);
+
+    List<Rate> findAllByUser(AppUser user);
 }

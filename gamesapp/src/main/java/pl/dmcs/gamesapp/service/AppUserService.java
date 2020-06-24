@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import pl.dmcs.gamesapp.model.AppUser;
 import pl.dmcs.gamesapp.model.Role;
 import pl.dmcs.gamesapp.repository.AppUserRepository;
+import pl.dmcs.gamesapp.repository.RateRepository;
 import pl.dmcs.gamesapp.repository.RoleRepository;
 
 import java.util.ArrayList;
@@ -27,11 +28,13 @@ public class AppUserService implements CRUDService<AppUser>, UserDetailsService 
     AppUserRepository appUserRepository;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    RateRepository rateRepository;
 
     @Override
     public void addOne(AppUser user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if(user.getRoles().isEmpty()){
+        if (user.getRoles().isEmpty()) {
             user.setRoles(Collections.singleton(roleRepository.findByName("ROLE_REGULAR_USER")));
         }
         appUserRepository.save(user);
@@ -61,11 +64,17 @@ public class AppUserService implements CRUDService<AppUser>, UserDetailsService 
 
     @Override
     public void updateOne(AppUser user) {
+        user.setRoles(appUserRepository.findById(user.getId()).getRoles());
+        user.setFavourites(appUserRepository.findById(user.getId()).getFavourites());
+        user.setReviews(appUserRepository.findById(user.getId()).getReviews());
+        user.setScreenshots(appUserRepository.findById(user.getId()).getScreenshots());
+        user.setTutorials(appUserRepository.findById(user.getId()).getTutorials());
         appUserRepository.save(user);
     }
 
     @Override
     public void deleteOne(AppUser user) {
+        rateRepository.deleteAll(rateRepository.findAllByUser(user));
         appUserRepository.delete(user);
     }
 

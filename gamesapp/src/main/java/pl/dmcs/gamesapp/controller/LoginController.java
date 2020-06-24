@@ -16,11 +16,6 @@ public class LoginController {
     @Autowired
     AppUserService appUserService;
 
-    @GetMapping(value = {"/users"})
-    List<AppUser> getUsers() {
-        return appUserService.getAll();
-    }
-
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<Object> register(@RequestBody AppUser user){
         appUserService.addOne(user);

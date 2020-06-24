@@ -25,7 +25,7 @@ public class AppUser {
     )
     private Set<Role> roles = new HashSet<>();
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany
     @JoinTable(
             name = "favorites",
             joinColumns = {@JoinColumn(name = "user_id")},
@@ -106,12 +106,12 @@ public class AppUser {
     }
 
     @JsonIgnore
-    public Set<Game> getFovourites() {
+    public Set<Game> getFavourites() {
         return favorites;
     }
 
-    public void setFovourites(Set<Game> fovourites) {
-        this.favorites = fovourites;
+    public void setFavourites(Set<Game> favourites) {
+        this.favorites = favourites;
     }
 
     @JsonIgnore

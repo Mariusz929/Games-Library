@@ -22,7 +22,9 @@ import {ContactModalComponent} from './component/contact-modal/contact-modal.com
 import {NgbDatepickerModule} from "@ng-bootstrap/ng-bootstrap";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {MessageService} from "./service/message.service";
-import { GamePageComponent } from './component/game-page/game-page.component';
+import {GamePageComponent} from './component/game-page/game-page.component';
+import {TableService} from "./service/table.service";
+import {UserEditModalComponent} from './component/user-edit-modal/user-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { GamePageComponent } from './component/game-page/game-page.component';
     GameListComponent,
     ContactModalComponent,
     GamePageComponent,
+    UserEditModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,16 +47,20 @@ import { GamePageComponent } from './component/game-page/game-page.component';
     FormsModule,
     ToastrModule.forRoot(),
     NgbDatepickerModule,
-    NgbModule
+    NgbModule,
   ],
-  providers: [ContactModalComponent, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService,
+  providers: [ContactModalComponent, UserEditModalComponent, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService, TableService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    UserEditModalComponent
+  ]
 })
+
 export class AppModule {
 }

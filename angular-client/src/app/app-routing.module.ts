@@ -10,7 +10,7 @@ import {GameListComponent} from "./component/game-list/game-list.component";
 
 const routes: Routes = [
   {
-    path: 'user', component: UserComponent,
+    path: 'users', component: UserComponent,
     canActivate: [AuthGuard],
     data: {role: 'ROLE_ADMIN'}
   },

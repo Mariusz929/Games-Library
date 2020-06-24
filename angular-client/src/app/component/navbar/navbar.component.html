@@ -16,14 +16,19 @@
       <li class="nav-item">
         <a class="nav-link" href="/games">Game List</a>
       </li>
-      <li *ngIf="authService.userLoggedIn()" class="nav-item">
-        <a class="nav-link" href="/my-games">My games</a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Tutorials</a>
       </li>
+      <li *ngIf="authService.userLoggedIn()" class="nav-item">
+        <a class="nav-link" href="/my-games">My games</a>
+      </li>
+      <li *ngIf="authService.userLoggedIn() && authService.isAdmin()" class="nav-item">
+        <a class="nav-link" href="/users">Users</a>
+      </li>
       <li class="nav-item">
-        <a class="nav-link "><contact-modal></contact-modal></a>
+        <a class="nav-link ">
+          <contact-modal></contact-modal>
+        </a>
       </li>
     </ul>
     <ul *ngIf="authService.userLoggedIn()" class="nav navbar-nav navbar-right">

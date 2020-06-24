@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
   @ViewChild('content', {static: false}) public templateref: TemplateRef<any>;
 
   ngOnInit() {
-    console.log(this.templateref);
   }
 
 }
