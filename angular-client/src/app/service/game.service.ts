@@ -2,7 +2,6 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Game} from "../model/game.model";
-import {User} from "../model/user.model";
 
 @Injectable()
 export class GameService {
@@ -26,6 +25,14 @@ export class GameService {
 
   public save(game: Game) {
     return this.http.post<String>(this.gameUrl + '/add', game, {observe: 'response'})
+  }
+
+  public update(game: Game) {
+    return this.http.post<String>(this.gameUrl + '/update', game, {observe: 'response'})
+  }
+
+  public delete(id: number) {
+    return this.http.post<String>(this.gameUrl + '/delete', id, {observe: 'response'})
   }
 
 }

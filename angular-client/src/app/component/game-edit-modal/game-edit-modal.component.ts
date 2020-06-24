@@ -2,27 +2,24 @@ import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {AuthService} from "../../core/auth.service";
 import {NgForm} from "@angular/forms";
-import {UserService} from "../../service/user.service";
-import {User} from "../../model/user.model";
+import {Game} from "../../model/game.model";
+import {GameService} from "../../service/game.service";
 
 @Component({
-  selector: 'app-user-edit-modal',
+  selector: 'app-game-edit-modal',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './user-edit-modal.component.html',
-  styleUrls: ['./user-edit-modal.component.css']
+  templateUrl: './game-edit-modal.component.html',
+  styleUrls: ['./game-edit-modal.component.css']
 })
-
-export class UserEditModalComponent implements OnInit {
+export class GameEditModalComponent implements OnInit {
 
   closeResult = '';
-  @Input() public user = new User();
+  @Input() public game = new Game();
   successMessage = '';
   isEdited = false;
   isValidFormSubmitted = false;
-  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
-
-  constructor(private userService: UserService, private authService: AuthService, public modalService: NgbModal) {
+  constructor(private gameService: GameService, private authService: AuthService, public modalService: NgbModal) {
   }
 
   open(content) {
@@ -49,15 +46,14 @@ export class UserEditModalComponent implements OnInit {
       return;
     }
     this.isValidFormSubmitted = true;
-    this.editUser();
-    //this.modalService.dismissAll();
+    this.editGame();
   }
 
-  editUser(): void {
-    this.userService.update(this.user).subscribe(
+  editGame(): void {
+    this.gameService.update(this.game).subscribe(
       response => {
         if (response.status == 200) {
-          this.successMessage = "User data updated!";
+          this.successMessage = "Game data edited!";
           this.isEdited = true;
         } else this.successMessage = "An error Occured!";
       }

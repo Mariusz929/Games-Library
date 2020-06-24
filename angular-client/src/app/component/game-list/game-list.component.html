@@ -3,7 +3,7 @@
   <!-- ADD GAME COLLAPSE SPOILER-->
   <div *ngIf="authService.userLoggedIn() && authService.isAdmin() && !router.url.includes('my-games')"
        class="text-center">
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+    <button class="btn btn-collapse" type="button" data-toggle="collapse" data-target="#collapseExample"
             aria-expanded="false" aria-controls="collapseExample">
       Add game to library
     </button>
@@ -41,7 +41,7 @@
           </div>
           <div class="form-group">
             <label for="inputDate">Release Date</label>
-            <input type="text" class="form-control" id="inputDate" placeholder="Release Date"
+            <input type="date" class="form-control" id="inputDate" placeholder="Release Date"
                    [(ngModel)]="gameInput.releaseDate"
                    required #valDate="ngModel" name="date">
             <div *ngIf="valDate.errors && gameForm.submitted && !isGameAdded" [ngClass]="'error'">
@@ -76,7 +76,8 @@
           </div>
           <div class="form-group">
             <label for="inputThumbnail">Thumbnail</label>
-            <input type="file" accept="image/*" (change)="changeListener($event)" class="form-control" id="inputThumbnail"
+            <input type="file" accept="image/*" (change)="changeListener($event)" class="form-control"
+                   id="inputThumbnail"
                    name="thumbnail">
           </div>
         </div>
@@ -96,7 +97,7 @@
         <img *ngIf="gameInput.thumbnail != null" src="{{image}}" alt="..." class="img-thumbnail">
       </div>
       <div class="submit-button">
-        <button class="btn btn-primary">Add Game</button>
+        <button class="btn btn-primary btn-collapse">Add Game</button>
       </div>
     </form>
   </div>
@@ -108,12 +109,17 @@
       <div class="col-md-6">
         <div class="card-deck">
           <div class="card">
-            <img class="card-img-top" (click)="gameRedirect(game.id)" src="{{game.thumbnail}}" alt="Card image cap">
+            <img class="card-img-top" (click)="gameRedirect(game.id)" src="{{game.thumbnail}}" alt="">
             <div class="card-body">
               <h3 (click)="gameRedirect(game.id)" class="card-title">{{game.name}}</h3>
-              <p class="card-text">Producent: {{game.producer}}</p>
-              <p class="card-text">Wydawca: {{game.distributor}}</p>
-              <p class="card-text"><small class="text-gold">Data pramiery gry: {{game.releaseDate}}</small></p>
+              <p class="card-text">Genre: {{game.genre}}</p>
+              <p class="card-text">Producer: {{game.producer}}</p>
+              <p class="card-text">Distributor: {{game.distributor}}</p>
+              <p class="card-text"><small class="text-gold">Release date: {{game.releaseDate}}</small></p>
+              <div *ngIf="authService.userLoggedIn() && authService.isAdmin()">
+                <button class="btn btn-primary btn-command" (click)="openModal(game)">Edit</button>
+                <button class="btn btn-danger btn-command" (click)="deleteGame(game.id)">Delete</button>
+              </div>
             </div>
           </div>
         </div>
@@ -123,18 +129,22 @@
         <div class="card-deck">
           <div class="card">
             <img class="card-img-top" (click)="gameRedirect(dataSource[i+1].id)" src="{{dataSource[i+1].thumbnail}}"
-                 alt="Card image cap">
+                 alt="">
             <div class="card-body">
               <h3 (click)="gameRedirect(dataSource[i+1].id)" class="card-title">{{dataSource[i + 1].name}}</h3>
-              <p class="card-text">Producent: {{dataSource[i + 1].producer}}</p>
-              <p class="card-text">Wydawca: {{dataSource[i + 1].distributor}}</p>
-              <p class="card-text"><small class="text-gold">Data pramiery gry: {{dataSource[i + 1].releaseDate}}</small>
+              <p class="card-text">Genre: {{dataSource[i + 1].genre}}</p>
+              <p class="card-text">Producer: {{dataSource[i + 1].producer}}</p>
+              <p class="card-text">Distributor: {{dataSource[i + 1].distributor}}</p>
+              <p class="card-text"><small class="text-gold">Release date: {{dataSource[i + 1].releaseDate}}</small>
               </p>
+              <div *ngIf="authService.userLoggedIn() && authService.isAdmin()">
+                <button class="btn btn-primary btn-command" (click)="openModal(dataSource[i+1])">Edit</button>
+                <button class="btn btn-danger btn-command" (click)="deleteGame(dataSource[i+1].id)">Delete</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

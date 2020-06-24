@@ -52,11 +52,16 @@ h3 {
   text-align: center;
 }
 
-.btn-primary {
+.btn-collapse {
   background: linear-gradient(143deg, #6d5577, #4d596b, #593456) 0% 0% / 200% 200%;
   background-size: 300% 300%;
   border-color: #f28b00;
+  color: #fff;
   animation: gradient 22s ease infinite;
+}
+
+.btn-primary, .btn-danger {
+  border-color: #f28b00;
 }
 
 @keyframes gradient {

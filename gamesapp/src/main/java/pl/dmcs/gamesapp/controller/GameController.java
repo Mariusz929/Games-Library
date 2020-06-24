@@ -11,7 +11,6 @@ import pl.dmcs.gamesapp.service.AppUserService;
 import pl.dmcs.gamesapp.service.GameService;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class GameController {
 
     @GetMapping(value = "/upcoming")
     List<Game> geUpcomingGames() throws ParseException {
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date currentDate = new Date();
         df.format(currentDate);
         List<Game> result = new ArrayList<>();
@@ -58,6 +57,18 @@ public class GameController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<Object> addGame(@RequestBody Game game) throws IOException {
         gameService.addOne(game);
+        return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public ResponseEntity<Object> deleteGame(@RequestBody int id) {
+        gameService.deleteOne(gameService.getOne(id));
+        return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ResponseEntity<Object> updateGame(@RequestBody Game game) {
+        gameService.updateOne(game);
         return ResponseEntity.ok().build();
     }
 }

@@ -4,7 +4,8 @@ import {GameService} from "../../service/game.service";
 import {Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
 import {AuthService} from "../../core/auth.service";
-import {log} from "util";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {GameEditModalComponent} from "../game-edit-modal/game-edit-modal.component";
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {
@@ -26,7 +27,7 @@ export class GameListComponent implements OnInit {
   isGameAdded = false;
   image;
 
-  constructor(public router: Router, public authService: AuthService, private gameService: GameService) {
+  constructor(public router: Router, private modalService: NgbModal, public authService: AuthService, private gameService: GameService) {
   }
 
   ngOnInit() {
@@ -76,6 +77,20 @@ export class GameListComponent implements OnInit {
         } else this.successMessage = "An erorr occured!";
       }
     )
+  }
+
+  deleteGame(id: number) {
+    this.gameService.delete(id).subscribe(
+      response => {
+        if (response.status == 200)
+          this.ngOnInit();
+      }
+    )
+  }
+
+  openModal(game) {
+    const modalRef = this.modalService.open(GameEditModalComponent);
+    modalRef.componentInstance.game = game;
   }
 
   //TODO redirect to exact game page

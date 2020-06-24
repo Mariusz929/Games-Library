@@ -16,4 +16,6 @@ public interface RateRepository extends JpaRepository<Rate, Long> {
     List<Rate> findAllByGameAndUser(Game game, AppUser user);
 
     List<Rate> findAllByUser(AppUser user);
+
+    List<Rate> findAllByGame(Game game);
 }

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">Send us a message</h4>
+  <h4 class="modal-title" id="modal-basic-title">Edit user no. {{user.id}}</h4>
   <button type="button" class="close" aria-label="Close" (click)="this.modalService.dismissAll()">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -27,7 +27,7 @@
     <div class="form-group">
       <label for="login">User login:</label>
       <div class="input-group">
-        <input type="text" id="login" name="login" value="test"
+        <input type="text" id="login" name="login"
                required #valLogin="ngModel" [(ngModel)]="user.login" class="form-control"/>
       </div>
       <div *ngIf="valLogin.errors && !isValidFormSubmitted" [ngClass]="'error'">
@@ -39,7 +39,7 @@
     <div class="form-group">
       <label for="password">User password:</label>
       <div class="input-group">
-        <input type="password" id="password" name="password" value="test"
+        <input type="password" id="password" name="password"
                required #valPass="ngModel" [(ngModel)]="user.password" class="form-control"/>
       </div>
       <div *ngIf="valPass.errors && !isValidFormSubmitted" [ngClass]="'error'">

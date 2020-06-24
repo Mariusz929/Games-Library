@@ -25,6 +25,7 @@ import {MessageService} from "./service/message.service";
 import {GamePageComponent} from './component/game-page/game-page.component';
 import {TableService} from "./service/table.service";
 import {UserEditModalComponent} from './component/user-edit-modal/user-edit-modal.component';
+import {GameEditModalComponent} from './component/game-edit-modal/game-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {UserEditModalComponent} from './component/user-edit-modal/user-edit-moda
     ContactModalComponent,
     GamePageComponent,
     UserEditModalComponent,
+    GameEditModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ import {UserEditModalComponent} from './component/user-edit-modal/user-edit-moda
     NgbDatepickerModule,
     NgbModule,
   ],
-  providers: [ContactModalComponent, UserEditModalComponent, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService, TableService,
+  providers: [ContactModalComponent, UserEditModalComponent, GameEditModalComponent, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService, TableService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
@@ -58,7 +60,8 @@ import {UserEditModalComponent} from './component/user-edit-modal/user-edit-moda
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    UserEditModalComponent
+    UserEditModalComponent,
+    GameEditModalComponent
   ]
 })
 

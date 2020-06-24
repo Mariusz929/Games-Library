@@ -1,0 +1,31 @@
+.modal-body {
+  background-color: #434343;
+}
+
+.modal-header {
+  color: #dfeaec;
+  background-color: #232323;
+  border-bottom-color: #baad7b;
+}
+
+.modal-footer {
+  background-color: #232323;
+  border-top-color: #baad7b;
+}
+
+.close:focus {
+  outline: 0;
+}
+
+.close {
+  color: #ff0000;
+}
+
+.form-group {
+  margin-top: 30px;
+}
+
+.btn-outline-light {
+  color: #baad7b;
+  border-color: #baad7b;
+}
