@@ -26,6 +26,7 @@ public class FavoritesController {
     @Autowired
     GameService gameService;
 
+    @Transactional
     @RequestMapping(value = "/check/{id}", method = RequestMethod.GET)
     public Map<String, Boolean> isUsersFavorite(@PathVariable("id") long gameId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
