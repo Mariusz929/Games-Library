@@ -1,0 +1,8 @@
+.mat-icon-button{
+ background-color: transparent;
+  color: #ff5167;
+}
+
+.mat-icon-button:focus {
+  outline: 0;
+}

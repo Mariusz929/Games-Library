@@ -26,6 +26,10 @@ import {GamePageComponent} from './component/game-page/game-page.component';
 import {TableService} from "./service/table.service";
 import {UserEditModalComponent} from './component/user-edit-modal/user-edit-modal.component';
 import {GameEditModalComponent} from './component/game-edit-modal/game-edit-modal.component';
+import {FavoriteButtonComponent} from './component/favorite-button/favorite-button.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {FavoriteService} from "./service/favorite.service";
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import {GameEditModalComponent} from './component/game-edit-modal/game-edit-moda
     GamePageComponent,
     UserEditModalComponent,
     GameEditModalComponent,
+    FavoriteButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,8 +55,10 @@ import {GameEditModalComponent} from './component/game-edit-modal/game-edit-moda
     ToastrModule.forRoot(),
     NgbDatepickerModule,
     NgbModule,
+    MatIconModule,
+    MatButtonModule
   ],
-  providers: [ContactModalComponent, UserEditModalComponent, GameEditModalComponent, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService, TableService,
+  providers: [ContactModalComponent, UserEditModalComponent, GameEditModalComponent, FavoriteService, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService, TableService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

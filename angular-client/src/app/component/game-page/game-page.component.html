@@ -1,1 +1,22 @@
-<p>game-page works!</p>
+<div class="game-image" [style.background-image]="'url(' + game.thumbnail  + ')'">
+</div>
+<div class="game-text">
+  <h1>{{game.name}}</h1>
+  <p>By {{game.producer}}</p>
+</div>
+<div class="game-panel">
+  <button class="btn btn-primary btn-collapse">Favorites</button>
+  <app-favorite-button [selected]="isFavorite" [gameId]="game.id"></app-favorite-button>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="game-properties">
+      <p></p>
+      <p>{{game.distributor}}</p>
+      <p>{{game.description}}</p>
+      <p>{{game.releaseDate}}</p>
+      <p>{{game.genre}}</p>
+      <p>{{game.producer}}</p>
+    </div>
+  </div>
+</div>

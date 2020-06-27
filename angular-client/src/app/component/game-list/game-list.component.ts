@@ -93,9 +93,8 @@ export class GameListComponent implements OnInit {
     modalRef.componentInstance.game = game;
   }
 
-  //TODO redirect to exact game page
   gameRedirect(id: number) {
-    console.log(id);
+    this.router.navigate(['/game/' + id])
   }
 
   changeListener($event): void {
@@ -120,7 +119,8 @@ export class GameListComponent implements OnInit {
           const ctx = elem.getContext('2d');
 
           ctx.drawImage(img, 0, 0, elem.width, elem.height);
-          this.gameInput.thumbnail = ctx.canvas.toDataURL(); //base64
+          //this.gameInput.thumbnail = ctx.canvas.toDataURL(); //base64
+          this.gameInput.thumbnail = this.image;
         };
         img.onerror = error => rej(error);
       });

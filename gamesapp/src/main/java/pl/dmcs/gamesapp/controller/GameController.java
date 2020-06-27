@@ -10,13 +10,11 @@ import pl.dmcs.gamesapp.model.Game;
 import pl.dmcs.gamesapp.service.AppUserService;
 import pl.dmcs.gamesapp.service.GameService;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
@@ -34,10 +32,10 @@ public class GameController {
     }
 
     @GetMapping(value = "/my-games")
-    Set<Game> geMytGames() {
+    List<Game> geMyGames() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         AppUser user = appUserService.getOne(auth.getName());
-        return user.getFavourites();
+        return gameService.getByUser(user);
     }
 
     @GetMapping(value = "/upcoming")
@@ -52,6 +50,11 @@ public class GameController {
             }
         }
         return result;
+    }
+
+    @GetMapping("/details/{id}")
+    Game getGame(@PathVariable("id") long id) {
+        return gameService.getOne(id);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)

@@ -18,6 +18,7 @@ public class Game {
     private String genre;
     private String producer;
     private String distributor;
+    @Column(length = 2000)
     private String description;
     private String releaseDate;
     @Lob

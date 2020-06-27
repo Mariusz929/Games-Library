@@ -14,6 +14,7 @@ import pl.dmcs.gamesapp.repository.AppUserRepository;
 import pl.dmcs.gamesapp.repository.RateRepository;
 import pl.dmcs.gamesapp.repository.RoleRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -62,13 +63,22 @@ public class AppUserService implements CRUDService<AppUser>, UserDetailsService 
         return appUserRepository.findAll();
     }
 
+    @Transactional
     @Override
     public void updateOne(AppUser user) {
         user.setRoles(appUserRepository.findById(user.getId()).getRoles());
-        user.setFavourites(appUserRepository.findById(user.getId()).getFavourites());
-        user.setReviews(appUserRepository.findById(user.getId()).getReviews());
-        user.setScreenshots(appUserRepository.findById(user.getId()).getScreenshots());
-        user.setTutorials(appUserRepository.findById(user.getId()).getTutorials());
+        if (user.getFavourites() == null) {
+            user.setFavourites(appUserRepository.findById(user.getId()).getFavourites());
+        }
+        if (user.getReviews() == null) {
+            user.setReviews(appUserRepository.findById(user.getId()).getReviews());
+        }
+        if (user.getScreenshots() == null) {
+            user.setScreenshots(appUserRepository.findById(user.getId()).getScreenshots());
+        }
+        if (user.getTutorials() == null) {
+            user.setTutorials(appUserRepository.findById(user.getId()).getTutorials());
+        }
         appUserRepository.save(user);
     }
 
