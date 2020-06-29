@@ -6,3 +6,7 @@
 .mat-icon-button:focus {
   outline: 0;
 }
+
+.mat-icon{
+  font-size: 48px;
+}

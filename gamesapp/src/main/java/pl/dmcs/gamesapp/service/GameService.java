@@ -69,4 +69,5 @@ public class GameService implements CRUDService<Game> {
     public List<Game> getByUser(AppUser user) {
         return gameRepository.findAllByUsersContains(user);
     }
+
 }

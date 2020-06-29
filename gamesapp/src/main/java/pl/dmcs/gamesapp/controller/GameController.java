@@ -10,7 +10,6 @@ import pl.dmcs.gamesapp.model.Game;
 import pl.dmcs.gamesapp.service.AppUserService;
 import pl.dmcs.gamesapp.service.GameService;
 
-import javax.transaction.Transactional;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,14 +31,14 @@ public class GameController {
     }
 
     @GetMapping(value = "/my-games")
-    List<Game> geMyGames() {
+    List<Game> getMyGames() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         AppUser user = appUserService.getOne(auth.getName());
         return gameService.getByUser(user);
     }
 
     @GetMapping(value = "/upcoming")
-    List<Game> geUpcomingGames() throws ParseException {
+    List<Game> getUpcomingGames() throws ParseException {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date currentDate = new Date();
         df.format(currentDate);

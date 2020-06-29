@@ -2,11 +2,14 @@
 </div>
 <div class="game-text">
   <h1>{{game.name}}</h1>
-  <p>By {{game.producer}}</p>
+  <rating-template [gameId]="game.id" [currentRate]="gameRate" [readonly]="true"
+                   [isOverallRate]="true"></rating-template>
 </div>
-<div class="game-panel">
-  <button class="btn btn-primary btn-collapse">Favorites</button>
+<div *ngIf="authService.userLoggedIn()" class="game-panel">
   <app-favorite-button [selected]="isFavorite" [gameId]="game.id"></app-favorite-button>
+  <hr>
+  <rating-template [gameId]="game.id" [currentRate]="currentUserRate" [readonly]="false"
+                   [isOverallRate]="false"></rating-template>
 </div>
 <div class="container">
   <div class="row">

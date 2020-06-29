@@ -28,11 +28,17 @@
   font-weight: bold;
   border: 2px ridge #980082;
   position: absolute;
-  top: 570px;
+  top: 541px;
   left: 16px;
   transform: translate(0, -50%);
   z-index: 2;
   width: 20%;
   padding: 20px;
   text-align: center;
+}
+
+hr{
+  background-color: #fff;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }

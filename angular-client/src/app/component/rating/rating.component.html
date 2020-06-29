@@ -1,0 +1,9 @@
+<ngb-rating [(rate)]="currentRate" [readonly]="readonly" (rateChange)="onRateChange($event)">>
+  <ng-template let-fill="fill" let-index="index">
+    <span class="star" [class.filled]="fill === 100" [class.bad]="index < 2">
+      <span class="half" [style.width.%]="fill" [class.bad]="index < 2">&#9733;</span>&#9733;</span>
+  </ng-template>
+</ngb-rating>
+<div *ngIf="isOverallRate" class="rate-result">This game rate is: {{currentRate}} out of 10</div>
+<div *ngIf="!isOverallRate && currentRate != 0.0" class="rate-result">Your rate is: {{currentRate}} out of 10</div>
+<div *ngIf="!isOverallRate && currentRate == 0.0" class="rate-result">Your haven't rated this game yet</div>

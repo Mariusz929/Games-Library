@@ -30,6 +30,8 @@ import {FavoriteButtonComponent} from './component/favorite-button/favorite-butt
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {FavoriteService} from "./service/favorite.service";
+import {RatingComponent} from './component/rating/rating.component';
+import {RateService} from "./service/rate.service";
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import {FavoriteService} from "./service/favorite.service";
     UserEditModalComponent,
     GameEditModalComponent,
     FavoriteButtonComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,7 @@ import {FavoriteService} from "./service/favorite.service";
     MatIconModule,
     MatButtonModule
   ],
-  providers: [ContactModalComponent, UserEditModalComponent, GameEditModalComponent, FavoriteService, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService, TableService,
+  providers: [ContactModalComponent, UserEditModalComponent, GameEditModalComponent, RateService, FavoriteService, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService, TableService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

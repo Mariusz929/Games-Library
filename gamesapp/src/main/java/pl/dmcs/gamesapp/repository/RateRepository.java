@@ -13,7 +13,7 @@ public interface RateRepository extends JpaRepository<Rate, Long> {
 
     Rate findById(long id);
 
-    List<Rate> findAllByGameAndUser(Game game, AppUser user);
+    Rate findByGameAndUser(Game game, AppUser user);
 
     List<Rate> findAllByUser(AppUser user);
 
