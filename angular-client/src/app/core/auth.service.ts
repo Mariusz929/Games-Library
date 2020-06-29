@@ -5,6 +5,7 @@ import {TokenStorage} from "./token.storage";
 import {Router} from "@angular/router";
 
 const DECODED_ROLES = 'userRole';
+const DECODED_USERNAME = 'userName';
 
 @Injectable()
 export class AuthService {
@@ -21,13 +22,20 @@ export class AuthService {
   }
 
   findRoles() {
-      let decodedJwtData = JSON.parse(atob(this.token.getToken().split('.')[1]));
-      let userRoles: string = ''
-      for (let role of decodedJwtData.scopes) {
-        role = role.authority;
-        userRoles += role;
-      }
-      sessionStorage.setItem(DECODED_ROLES, userRoles);
+    let decodedJwtData = JSON.parse(atob(this.token.getToken().split('.')[1]));
+    let userRoles: string = ''
+    for (let role of decodedJwtData.scopes) {
+      role = role.authority;
+      userRoles += role;
+    }
+    sessionStorage.setItem(DECODED_ROLES, userRoles);
+  }
+
+  findUsername() {
+    let decodedJwtData = JSON.parse(atob(this.token.getToken().split('.')[1]));
+    let userName: string = '';
+    userName = decodedJwtData.sub;
+    sessionStorage.setItem(DECODED_USERNAME, userName);
   }
 
   public userLoggedIn(): boolean {

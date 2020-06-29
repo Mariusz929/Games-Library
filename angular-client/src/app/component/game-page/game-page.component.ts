@@ -5,6 +5,9 @@ import {ActivatedRoute} from "@angular/router";
 import {FavoriteService} from "../../service/favorite.service";
 import {AuthService} from "../../core/auth.service";
 import {RateService} from "../../service/rate.service";
+import {ReviewService} from "../../service/review.service";
+import {Review} from "../../model/review.model";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-game-page',
@@ -19,13 +22,17 @@ export class GamePageComponent implements OnInit {
   @Input() isFavorite: boolean;
   @Input() gameRate: number;
   @Input() currentUserRate: number;
+  reviewList: Review[] = [];
+  commentText;
+  successMessage;
 
-  constructor(private route: ActivatedRoute, private rateService: RateService, public authService: AuthService, private favoriteService: FavoriteService, private gameService: GameService) {
+  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private rateService: RateService, public authService: AuthService, private favoriteService: FavoriteService, private gameService: GameService) {
   }
 
   ngOnInit() {
     this.getRates();
     this.getGame();
+    this.getReviews();
     if (this.authService.userLoggedIn()) {
       this.getResult();
     }
@@ -56,10 +63,35 @@ export class GamePageComponent implements OnInit {
         this.gameRate = result.sum;
       }
     );
-      this.rateService.getUserRateForGame(id).subscribe(
-        result => {
-          this.currentUserRate = result.sum;
-        }
-      );
+    this.rateService.getUserRateForGame(id).subscribe(
+      result => {
+        this.currentUserRate = result.sum;
+      }
+    );
+  }
+
+  getReviews(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.reviewService.getGameReviews(id).subscribe(
+      result => {
+        this.reviewList = result;
+      }
+    );
+  }
+
+  onFormSubmit(form: NgForm) {
+    this.addComment(this.commentText)
+    form.resetForm()
+  }
+
+  addComment(text: string): void {
+    let review = {username: sessionStorage.getItem('userName'), text: text};
+    this.reviewService.save(review, this.game.id).subscribe(
+      response => {
+        if (response.status == 200) {
+          this.reviewList.push(review);
+        } else this.successMessage = "An error Occured!";
+      }
+    )
   }
 }

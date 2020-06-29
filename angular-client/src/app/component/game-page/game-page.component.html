@@ -11,15 +11,47 @@
   <rating-template [gameId]="game.id" [currentRate]="currentUserRate" [readonly]="false"
                    [isOverallRate]="false"></rating-template>
 </div>
+
 <div class="container">
-  <div class="row">
-    <div class="game-properties">
-      <p></p>
-      <p>{{game.distributor}}</p>
-      <p>{{game.description}}</p>
-      <p>{{game.releaseDate}}</p>
-      <p>{{game.genre}}</p>
-      <p>{{game.producer}}</p>
+  <div class="row game-info">
+    <div class="col-md-2">
+      <div class="game-properties">
+        <label for="genre">Genre:</label>
+        <p id="genre">{{game.genre}}</p>
+        <label for="producer">Producer:</label>
+        <p id="producer">{{game.producer}}</p>
+        <label for="distributor">Distributor:</label>
+        <p id="distributor">{{game.distributor}}</p>
+        <label for="releaseDate">Release Date:</label>
+        <p id="releaseDate">{{game.releaseDate}}</p>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <h3>Description:</h3>
+      <p id="description">{{game.description}}</p>
     </div>
   </div>
+
+  <div class="comment_section">
+    <h3>Comment section:</h3>
+    <div *ngIf="authService.userLoggedIn()" class="comment-input">
+      <form #commentForm="ngForm" (ngSubmit)="onFormSubmit(commentForm)">
+        <div class="input-group">
+      <textarea rows="3" id="myComment" name="myComment" placeholder="Join conversation..." [(ngModel)]="commentText"
+                class="form-control"></textarea>
+          <button class="btn btn-primary btn-comment" type="submit" value="Submit">Send</button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngFor="let review of reviewList;">
+      <label for="comment">{{review.username}}:</label>
+      <div id="comment" class="comment_body">
+        {{review.text}}
+      </div>
+    </div>
+  </div>
+
 </div>
+
+

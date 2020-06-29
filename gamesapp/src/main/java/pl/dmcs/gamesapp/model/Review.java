@@ -13,6 +13,7 @@ public class Review {
     private AppUser user;
     @ManyToOne(fetch = FetchType.LAZY)
     private Game game;
+    @Column(length = 2000)
     private String text;
 
     public Review() {

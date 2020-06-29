@@ -32,6 +32,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {FavoriteService} from "./service/favorite.service";
 import {RatingComponent} from './component/rating/rating.component';
 import {RateService} from "./service/rate.service";
+import {ReviewService} from "./service/review.service";
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import {RateService} from "./service/rate.service";
     MatIconModule,
     MatButtonModule
   ],
-  providers: [ContactModalComponent, UserEditModalComponent, GameEditModalComponent, RateService, FavoriteService, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService, TableService,
+  providers: [ContactModalComponent, UserEditModalComponent, GameEditModalComponent, ReviewService, RateService, FavoriteService, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService, TableService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,

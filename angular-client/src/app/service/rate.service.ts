@@ -2,7 +2,6 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Rate} from "../model/rate.model";
-import {Game} from "../model/game.model";
 
 @Injectable()
 export class RateService {

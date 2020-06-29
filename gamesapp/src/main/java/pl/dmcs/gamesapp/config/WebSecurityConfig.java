@@ -53,8 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/games/delete").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/games/update").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/favorites/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_REGULAR_USER")
-                //TODO change permissions
                 .antMatchers("/rates/**").permitAll()
+                .antMatchers("/reviews/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_REGULAR_USER")
                 .antMatchers("/users").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/users/*").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/").permitAll()
@@ -69,5 +69,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/logout");
     }
-
 }

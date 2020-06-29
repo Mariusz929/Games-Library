@@ -29,6 +29,7 @@ export class LoginComponent {
         if (data != null) {
           this.token.saveToken(data.token);
           this.authService.findRoles();
+          this.authService.findUsername();
           this.router.navigate(['/games']);
         } else this.errorMessage = "Nieprawidłowy login lub hasło";
       }
