@@ -32,6 +32,21 @@
     </div>
   </div>
 
+  <!--TUTORIALS-->
+  <div class="tutorials_section">
+    <h3>Tutorials:</h3>
+    <div class="tutorial-element" *ngFor="let tutorial of tutorialList; let i = index">
+      <label for="tutorial">{{i + 1}}:</label>
+      <span id="tutorial" (click)="tutorialRedirect(tutorial.id)"> {{tutorial.title}}</span>
+    </div>
+    <div class="add-comment-button">
+      <button *ngIf="authService.userLoggedIn()" class="btn btn-primary btn-comment" (click)="openModal(game)">Add
+        tutorial
+      </button>
+    </div>
+  </div>
+
+  <!--COMMENTS-->
   <div class="comment_section">
     <h3>Comment section:</h3>
     <div *ngIf="authService.userLoggedIn()" class="comment-input">
@@ -51,7 +66,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 

@@ -54,7 +54,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/games/update").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/favorites/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_REGULAR_USER")
                 .antMatchers("/rates/**").permitAll()
-                .antMatchers("/reviews/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_REGULAR_USER")
+                .antMatchers("/reviews/*").permitAll()
+                .antMatchers("/reviews/add/*").hasAnyAuthority("ROLE_ADMIN", "ROLE_REGULAR_USER")
+                //TODO set proper permissions
+                .antMatchers("/tutorials/**").permitAll()
                 .antMatchers("/users").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/users/*").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/").permitAll()

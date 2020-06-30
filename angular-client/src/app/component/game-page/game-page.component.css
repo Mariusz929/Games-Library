@@ -53,7 +53,6 @@
 }
 
 
-
 .game-info p {
   text-align: justify;
 }
@@ -70,10 +69,33 @@
   border-color: #baad7b;
 }
 
+.add-comment-button {
+  text-align: right;
+}
+
 hr {
   background-color: #fff;
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.tutorials_section {
+  background-color: #3b0a2f;
+  padding: 20px;
+  border: 16px solid #44003a;
+  margin-top: 60px;
+  border-radius: 5px;
+}
+
+.tutorials_section h3 {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.tutorial-element {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .comment_section {

@@ -1,13 +1,17 @@
 import {Component, ElementRef, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {Game} from "../../model/game.model";
 import {GameService} from "../../service/game.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FavoriteService} from "../../service/favorite.service";
 import {AuthService} from "../../core/auth.service";
 import {RateService} from "../../service/rate.service";
 import {ReviewService} from "../../service/review.service";
 import {Review} from "../../model/review.model";
 import {NgForm} from "@angular/forms";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {TutorialAddModalComponent} from "../tutorial-add-modal/tutorial-add-modal.component";
+import {Tutorial} from "../../model/tutorial.model";
+import {TutorialService} from "../../service/tutorial.service";
 
 @Component({
   selector: 'app-game-page',
@@ -23,16 +27,18 @@ export class GamePageComponent implements OnInit {
   @Input() gameRate: number;
   @Input() currentUserRate: number;
   reviewList: Review[] = [];
+  tutorialList: Tutorial[] = [];
   commentText;
   successMessage;
 
-  constructor(private route: ActivatedRoute, private reviewService: ReviewService, private rateService: RateService, public authService: AuthService, private favoriteService: FavoriteService, private gameService: GameService) {
+  constructor(public router: Router, private route: ActivatedRoute, private modalService: NgbModal, private tutorialService: TutorialService, private reviewService: ReviewService, private rateService: RateService, public authService: AuthService, private favoriteService: FavoriteService, private gameService: GameService) {
   }
 
   ngOnInit() {
     this.getRates();
     this.getGame();
     this.getReviews();
+    this.getTutorials();
     if (this.authService.userLoggedIn()) {
       this.getResult();
     }
@@ -77,6 +83,24 @@ export class GamePageComponent implements OnInit {
         this.reviewList = result;
       }
     );
+  }
+
+  getTutorials(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.tutorialService.getGameTutorials(id).subscribe(
+      result => {
+        this.tutorialList = result;
+      }
+    );
+  }
+
+  openModal(game) {
+    const modalRef = this.modalService.open(TutorialAddModalComponent);
+    modalRef.componentInstance.gameId = game.id;
+  }
+
+  tutorialRedirect(id: number) {
+    this.router.navigate(['/tutorial/' + id])
   }
 
   onFormSubmit(form: NgForm) {

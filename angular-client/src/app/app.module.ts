@@ -33,6 +33,11 @@ import {FavoriteService} from "./service/favorite.service";
 import {RatingComponent} from './component/rating/rating.component';
 import {RateService} from "./service/rate.service";
 import {ReviewService} from "./service/review.service";
+import {TutorialAddModalComponent} from './component/tutorial-add-modal/tutorial-add-modal.component';
+import {TutorialService} from "./service/tutorial.service";
+import { TutorialPageComponent } from './component/tutorial-page/tutorial-page.component';
+import {PdfViewerModule} from "ng2-pdf-viewer";
+import { TutorialListComponent } from './component/tutorial-list/tutorial-list.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +54,9 @@ import {ReviewService} from "./service/review.service";
     GameEditModalComponent,
     FavoriteButtonComponent,
     RatingComponent,
+    TutorialAddModalComponent,
+    TutorialPageComponent,
+    TutorialListComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,9 +68,10 @@ import {ReviewService} from "./service/review.service";
     NgbDatepickerModule,
     NgbModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    PdfViewerModule
   ],
-  providers: [ContactModalComponent, UserEditModalComponent, GameEditModalComponent, ReviewService, RateService, FavoriteService, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService, TableService,
+  providers: [ContactModalComponent, TutorialAddModalComponent, UserEditModalComponent, GameEditModalComponent, TutorialService, ReviewService, RateService, FavoriteService, MessageService, UserService, AuthService, TokenStorage, TokenStorage, GameService, TableService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
@@ -72,7 +81,8 @@ import {ReviewService} from "./service/review.service";
   bootstrap: [AppComponent],
   entryComponents: [
     UserEditModalComponent,
-    GameEditModalComponent
+    GameEditModalComponent,
+    TutorialAddModalComponent
   ]
 })
 

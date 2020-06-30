@@ -1,0 +1,17 @@
+<div class="pdf-container">
+  <div class="download-button">
+    <button class="btn btn-primary btn-download" (click)="downloadPdf()">Download
+    </button>
+  </div>
+  <div class="pdf-title">
+    <h1>{{tutorial.title}}</h1>
+  </div>
+  <pdf-viewer [src]="tutorial.pdfFile"
+              [render-text]="true"
+              [zoom]="1.3"
+              [autoresize]="true"
+              [show-borders]="true"
+              style="display: block;"
+  ></pdf-viewer>
+</div>
+

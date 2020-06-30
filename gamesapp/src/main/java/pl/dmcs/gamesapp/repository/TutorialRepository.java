@@ -6,12 +6,14 @@ import pl.dmcs.gamesapp.model.AppUser;
 import pl.dmcs.gamesapp.model.Game;
 import pl.dmcs.gamesapp.model.Tutorial;
 
+import java.util.List;
+
 @Repository
 public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
 
     Tutorial findById(long id);
 
-    Tutorial findAllByGame(Game game);
+    List<Tutorial> findAllByGame(Game game);
 
-    Tutorial findAllByUser(AppUser user);
+    List<Tutorial> findAllByUser(AppUser user);
 }

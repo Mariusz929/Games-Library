@@ -1,5 +1,7 @@
 package pl.dmcs.gamesapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,12 +17,12 @@ public class Tutorial {
     @ManyToOne(fetch = FetchType.LAZY)
     private Game game;
     @Lob
-    private byte[] pdfFile;
+    private String pdfFile;
 
     public Tutorial() {
     }
 
-    public Tutorial(String title, Game game, AppUser user, byte[] pdfFile) {
+    public Tutorial(String title, Game game, AppUser user, String pdfFile) {
         this.title = title;
         this.game = game;
         this.user = user;
@@ -43,6 +45,7 @@ public class Tutorial {
         this.title = title;
     }
 
+    @JsonIgnore
     public AppUser getUser() {
         return user;
     }
@@ -51,6 +54,7 @@ public class Tutorial {
         this.user = user;
     }
 
+    @JsonIgnore
     public Game getGame() {
         return game;
     }
@@ -59,11 +63,11 @@ public class Tutorial {
         this.game = game;
     }
 
-    public byte[] getPdfFile() {
+    public String getPdfFile() {
         return pdfFile;
     }
 
-    public void setPdfFile(byte[] pdfFile) {
+    public void setPdfFile(String pdfFile) {
         this.pdfFile = pdfFile;
     }
 }
