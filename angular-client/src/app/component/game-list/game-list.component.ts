@@ -7,11 +7,6 @@ import {AuthService} from "../../core/auth.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {GameEditModalComponent} from "../game-edit-modal/game-edit-modal.component";
 
-class ImageSnippet {
-  constructor(public src: string, public file: File) {
-  }
-}
-
 @Component({
   selector: 'app-game-list',
   encapsulation: ViewEncapsulation.None,

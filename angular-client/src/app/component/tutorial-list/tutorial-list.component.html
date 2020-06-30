@@ -1,1 +1,19 @@
-<p>tutorial-list works!</p>
+<div class="container">
+  <div class="row">
+    <input type="text" id="myInput" (keyup)="tableService.filterFunc(1)" placeholder="Search for emails..">
+    <table id="myTable" class="display table table-dark" style="width:100%">
+      <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let tutorial of dataSource; let i=index">
+        <td>{{i + 1}}</td>
+        <td><a href="tutorial/{{tutorial.id}}">{{tutorial.title}}</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
