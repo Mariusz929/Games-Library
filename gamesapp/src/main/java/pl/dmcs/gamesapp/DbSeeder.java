@@ -33,7 +33,7 @@ public class DbSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Role regularUserRole = new Role("ROLE_REGULAR_USER");
+        /*Role regularUserRole = new Role("ROLE_REGULAR_USER");
         Role adminRole = new Role("ROLE_ADMIN");
         roleService.addAll(Arrays.asList(regularUserRole, adminRole));
 
@@ -75,10 +75,10 @@ public class DbSeeder implements CommandLineRunner {
         appUserService.updateOne(testUser2);
 
         //TESTING PURPOSE
-        Set<Review> reviewList = gameService.getOne(6).getReviews();
+        Set<Review> reviewList = gameService.getOne(1).getReviews();
         System.out.println(reviewList);
         for (Review review : reviewList) {
             System.out.println(review.getText());
-        }
+        }*/
     }
 }

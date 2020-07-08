@@ -63,6 +63,7 @@ export class AuthService {
   public logOut() {
     sessionStorage.removeItem('AuthToken');
     sessionStorage.removeItem('userRole');
+    sessionStorage.removeItem('userName');
     this.http.get<any>('http://localhost:8080/logout');
   }
 }
