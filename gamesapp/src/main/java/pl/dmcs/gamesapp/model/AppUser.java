@@ -1,11 +1,13 @@
 package pl.dmcs.gamesapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "appUser")
 public class AppUser {
 
     @Id
@@ -15,7 +17,7 @@ public class AppUser {
     private String login;
     private String password;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id")},
@@ -23,7 +25,7 @@ public class AppUser {
     )
     private Set<Role> roles = new HashSet<>();
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany
     @JoinTable(
             name = "favorites",
             joinColumns = {@JoinColumn(name = "user_id")},
@@ -51,6 +53,16 @@ public class AppUser {
             orphanRemoval = true
     )
     private Set<Tutorial> tutorials = new HashSet<>();
+
+    public AppUser() {
+    }
+
+    public AppUser(String email, String login, String password, Set<Role> roles) {
+        this.email = email;
+        this.login = login;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public long getId() {
         return id;
@@ -84,6 +96,7 @@ public class AppUser {
         this.password = password;
     }
 
+    @JsonIgnore
     public Set<Role> getRoles() {
         return roles;
     }
@@ -92,14 +105,16 @@ public class AppUser {
         this.roles = roles;
     }
 
-    public Set<Game> getFovourites() {
+    @JsonIgnore
+    public Set<Game> getFavourites() {
         return favorites;
     }
 
-    public void setFovourites(Set<Game> fovourites) {
-        this.favorites = fovourites;
+    public void setFavourites(Set<Game> favourites) {
+        this.favorites = favourites;
     }
 
+    @JsonIgnore
     public Set<Screenshot> getScreenshots() {
         return screenshots;
     }
@@ -108,6 +123,7 @@ public class AppUser {
         this.screenshots = screenshots;
     }
 
+    @JsonIgnore
     public Set<Review> getReviews() {
         return reviews;
     }
@@ -116,6 +132,7 @@ public class AppUser {
         this.reviews = reviews;
     }
 
+    @JsonIgnore
     public Set<Tutorial> getTutorials() {
         return tutorials;
     }

@@ -1,5 +1,7 @@
 package pl.dmcs.gamesapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,13 +14,15 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private String name;
     private String genre;
     private String producer;
     private String distributor;
+    @Column(length = 2000)
     private String description;
     private String releaseDate;
     @Lob
-    private byte[] thumbnail;
+    private String thumbnail;
 
     @OneToMany(
             mappedBy = "game",
@@ -28,6 +32,7 @@ public class Game {
     private Set<Screenshot> screenshots = new HashSet<>();
 
     @OneToMany(
+            fetch = FetchType.EAGER,
             mappedBy = "game",
             cascade = CascadeType.ALL,
             orphanRemoval = true
@@ -44,12 +49,33 @@ public class Game {
     @ManyToMany(mappedBy = "favorites", fetch = FetchType.EAGER)
     private Set<AppUser> users = new HashSet<>();
 
+    public Game() {
+    }
+
+    public Game(String name, String genre, String producer, String distributor, String description, String releaseDate, String thumbnail) {
+        this.name = name;
+        this.genre = genre;
+        this.producer = producer;
+        this.distributor = distributor;
+        this.description = description;
+        this.releaseDate = releaseDate;
+        this.thumbnail = thumbnail;
+    }
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getGenre() {
@@ -60,12 +86,12 @@ public class Game {
         this.genre = genre;
     }
 
-    public String getProducent() {
+    public String getProducer() {
         return producer;
     }
 
-    public void setProducent(String producent) {
-        this.producer = producent;
+    public void setProducer(String producer) {
+        this.producer = producer;
     }
 
     public String getDistributor() {
@@ -92,14 +118,15 @@ public class Game {
         this.releaseDate = releaseDate;
     }
 
-    public byte[] getThumbnail() {
+    public String getThumbnail() {
         return thumbnail;
     }
 
-    public void setThumbnail(byte[] thumbnail) {
+    public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
 
+    @JsonIgnore
     public Set<Screenshot> getScreenshots() {
         return screenshots;
     }
@@ -108,6 +135,7 @@ public class Game {
         this.screenshots = screenshots;
     }
 
+    @JsonIgnore
     public Set<Review> getReviews() {
         return reviews;
     }
@@ -116,11 +144,21 @@ public class Game {
         this.reviews = reviews;
     }
 
+    @JsonIgnore
     public Set<Tutorial> getTutorials() {
         return tutorials;
     }
 
     public void setTutorials(Set<Tutorial> tutorials) {
         this.tutorials = tutorials;
+    }
+
+    @JsonIgnore
+    public Set<AppUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<AppUser> users) {
+        this.users = users;
     }
 }

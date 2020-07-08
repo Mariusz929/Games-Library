@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Add tutorial to this game</h4>
+  <button type="button" class="close" aria-label="Close" (click)="this.modalService.dismissAll()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #tutorialForm="ngForm" (ngSubmit)="onFormSubmit(tutorialForm)">
+    <div *ngIf="authService.userLoggedIn()" class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" placeholder="Title" [(ngModel)]="tutorial.title"
+             required #valTitle="ngModel" name="name">
+      <div *ngIf="valTitle.errors && tutorialForm.submitted && !isAdded" [ngClass]="'error'">
+        <div *ngIf="valTitle.errors.required">
+          Field is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="file">File</label>
+      <input type="file" accept="application/pdf" (change)="changeListener($event)" class="form-control"
+             id="file" name="thumbnail">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <h3 *ngIf="isAdded" [ngClass]="'success'" style="margin: auto">
+    {{successMessage}}
+  </h3>
+  <button type="submit" value="Submit" class="btn btn-outline-light" [disabled]="!tutorialForm.form.valid"
+          (click)="tutorialForm.ngSubmit.emit()">Add
+  </button>
+</div>
+
+

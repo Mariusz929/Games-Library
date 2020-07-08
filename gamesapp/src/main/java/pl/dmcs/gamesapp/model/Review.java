@@ -13,7 +13,17 @@ public class Review {
     private AppUser user;
     @ManyToOne(fetch = FetchType.LAZY)
     private Game game;
+    @Column(length = 2000)
     private String text;
+
+    public Review() {
+    }
+
+    public Review(Game game, AppUser user, String text) {
+        this.game = game;
+        this.user = user;
+        this.text = text;
+    }
 
     public long getId() {
         return id;

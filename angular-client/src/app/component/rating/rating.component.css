@@ -1,0 +1,34 @@
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 1.5rem;
+  color: #f1e1b1;
+  font-style: normal;
+}
+
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #ffd600;
+}
+
+.filled {
+  color: #ffd600;
+}
+
+.bad {
+  color: #deb0b0;
+}
+
+.filled.bad {
+  color: #ff1e1e;
+}
+
+.bad.half{
+color: red;
+}
+
+.d-inline-flex:focus {
+  outline: 0;
+}

@@ -1,0 +1,52 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Send us a message</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #contactForm="ngForm" (ngSubmit)="onFormSubmit(contactForm)">
+      <div *ngIf="!authService.userLoggedIn()">
+        <label for="subject">Your email:</label>
+        <div class="input-group">
+          <input type="email" id="subject" name="subject" placeholder="type your email address here"
+                 required [pattern]="emailPattern" #valEmail="ngModel" [(ngModel)]="message.subject"
+                 class="form-control"/>
+        </div>
+        <div *ngIf="valEmail.errors && !isValidFormSubmitted" [ngClass]="'error'">
+          <div *ngIf="valEmail.errors.required">
+            Email is required.
+          </div>
+          <div *ngIf="valEmail.errors.pattern">
+            Email not valid.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">Your message:</label>
+        <div class="input-group">
+            <textarea rows="5" id="message" name="message" placeholder="your message..."
+                      required #valText="ngModel" [(ngModel)]="message.text" class="form-control"></textarea>
+        </div>
+        <div *ngIf="valText.errors && !isValidFormSubmitted" [ngClass]="'error'">
+          <div *ngIf="valText.errors.required">
+            You cannot send empty message.
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <h3 *ngIf="isMailSent" [ngClass]="'success'" style="margin: auto">
+      {{successMessage}}
+    </h3>
+    <button type="submit" value="Submit" class="btn btn-outline-light" [disabled]="!contactForm.form.valid" (click)="contactForm.ngSubmit.emit()">Send
+    </button>
+  </div>
+</ng-template>
+
+<a (click)="open(content)">Contact</a>
+
+
+

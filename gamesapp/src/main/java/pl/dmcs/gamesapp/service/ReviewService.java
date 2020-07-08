@@ -2,6 +2,7 @@ package pl.dmcs.gamesapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.dmcs.gamesapp.model.Game;
 import pl.dmcs.gamesapp.model.Review;
 import pl.dmcs.gamesapp.repository.ReviewRepository;
 
@@ -46,5 +47,9 @@ public class ReviewService implements CRUDService<Review> {
     @Override
     public void deleteAll(List<Review> reviewList) {
         reviewRepository.deleteAll(reviewList);
+    }
+
+    public List<Review> getByGame(Game game) {
+        return reviewRepository.findAllByGame(game);
     }
 }

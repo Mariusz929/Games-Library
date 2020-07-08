@@ -1,0 +1,71 @@
+<div class="game-image" [style.background-image]="'url(' + game.thumbnail  + ')'">
+</div>
+<div class="game-text">
+  <h1>{{game.name}}</h1>
+  <rating-template [gameId]="game.id" [currentRate]="gameRate" [readonly]="true"
+                   [isOverallRate]="true"></rating-template>
+</div>
+<div *ngIf="authService.userLoggedIn()" class="game-panel">
+  <app-favorite-button [selected]="isFavorite" [gameId]="game.id"></app-favorite-button>
+  <hr>
+  <rating-template [gameId]="game.id" [currentRate]="currentUserRate" [readonly]="false"
+                   [isOverallRate]="false"></rating-template>
+</div>
+
+<div class="container">
+  <div class="row game-info">
+    <div class="col-md-2">
+      <div class="game-properties">
+        <label for="genre">Genre:</label>
+        <p id="genre">{{game.genre}}</p>
+        <label for="producer">Producer:</label>
+        <p id="producer">{{game.producer}}</p>
+        <label for="distributor">Distributor:</label>
+        <p id="distributor">{{game.distributor}}</p>
+        <label for="releaseDate">Release Date:</label>
+        <p id="releaseDate">{{game.releaseDate}}</p>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <h3>Description:</h3>
+      <p id="description">{{game.description}}</p>
+    </div>
+  </div>
+
+  <!--TUTORIALS-->
+  <div class="tutorials_section">
+    <h3>Tutorials:</h3>
+    <div class="tutorial-element" *ngFor="let tutorial of tutorialList; let i = index">
+      <label for="tutorial">{{i + 1}}:</label>
+      <span id="tutorial" (click)="tutorialRedirect(tutorial.id)"> {{tutorial.title}}</span>
+    </div>
+    <div class="add-comment-button">
+      <button *ngIf="authService.userLoggedIn()" class="btn btn-primary btn-comment" (click)="openModal(game)">Add
+        tutorial
+      </button>
+    </div>
+  </div>
+
+  <!--COMMENTS-->
+  <div class="comment_section">
+    <h3>Comment section:</h3>
+    <div *ngIf="authService.userLoggedIn()" class="comment-input">
+      <form #commentForm="ngForm" (ngSubmit)="onFormSubmit(commentForm)">
+        <div class="input-group">
+      <textarea rows="3" id="myComment" name="myComment" placeholder="Join conversation..." [(ngModel)]="commentText"
+                class="form-control"></textarea>
+          <button class="btn btn-primary btn-comment" type="submit" value="Submit">Send</button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngFor="let review of reviewList;">
+      <label for="comment">{{review.username}}:</label>
+      <div id="comment" class="comment_body">
+        {{review.text}}
+      </div>
+    </div>
+  </div>
+</div>
+
+

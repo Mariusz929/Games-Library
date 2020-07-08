@@ -15,6 +15,15 @@ public class Rate {
     private Game game;
     private double rate;
 
+    public Rate() {
+    }
+
+    public Rate(Game game, AppUser user, double rate) {
+        this.game = game;
+        this.user = user;
+        this.rate = rate;
+    }
+
     public long getId() {
         return id;
     }

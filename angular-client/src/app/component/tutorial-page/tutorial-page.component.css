@@ -1,0 +1,31 @@
+.pdf-container {
+  background-color: #3b0a2f;
+  border: 14px solid #44003a;
+  padding: 20px;
+  color: burlywood;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 65%;
+  margin: 80px auto 160px;
+}
+
+.pdf-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.download-button {
+  text-align: right;
+}
+
+.btn-download {
+  background-color: #5f3e60;
+  color: #baad7b;
+  border-color: #baad7b;
+}
+
+.btn-download:hover {
+  color: #deb887;
+  background-color: #3b0a2f;
+  border-color: #deb587;
+}

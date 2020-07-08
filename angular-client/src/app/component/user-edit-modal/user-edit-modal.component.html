@@ -1,0 +1,60 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Edit user no. {{user.id}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="this.modalService.dismissAll()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #userEditForm="ngForm" (ngSubmit)="onFormSubmit(userEditForm)">
+    <div class="input-group">
+      <input type="hidden" id="id" name="id" [(ngModel)]="user.id"
+             class="form-control"/>
+    </div>
+    <label for="email">User email:</label>
+    <div class="input-group">
+      <input type="email" id="email" name="email"
+             required [pattern]="emailPattern" #valEmail="ngModel" [(ngModel)]="user.email"
+             class="form-control"/>
+    </div>
+    <div *ngIf="valEmail.errors && !isValidFormSubmitted" [ngClass]="'error'">
+      <div *ngIf="valEmail.errors.required">
+        Email is required.
+      </div>
+      <div *ngIf="valEmail.errors.pattern">
+        Email not valid.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="login">User login:</label>
+      <div class="input-group">
+        <input type="text" id="login" name="login"
+               required #valLogin="ngModel" [(ngModel)]="user.login" class="form-control"/>
+      </div>
+      <div *ngIf="valLogin.errors && !isValidFormSubmitted" [ngClass]="'error'">
+        <div *ngIf="valLogin.errors.required">
+          Field required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">User password:</label>
+      <div class="input-group">
+        <input type="password" id="password" name="password"
+               required #valPass="ngModel" [(ngModel)]="user.password" class="form-control"/>
+      </div>
+      <div *ngIf="valPass.errors && !isValidFormSubmitted" [ngClass]="'error'">
+        <div *ngIf="valPass.errors.required">
+          Field required.
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <h3 *ngIf="isEdited" [ngClass]="'success'" style="margin: auto">
+    {{successMessage}}
+  </h3>
+  <button type="submit" value="Submit" class="btn btn-outline-light" [disabled]="!userEditForm.form.valid"
+          (click)="userEditForm.ngSubmit.emit()">Send
+  </button>
+</div>

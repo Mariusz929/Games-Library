@@ -2,9 +2,11 @@ package pl.dmcs.gamesapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.dmcs.gamesapp.model.Game;
 import pl.dmcs.gamesapp.model.Tutorial;
 import pl.dmcs.gamesapp.repository.TutorialRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -46,5 +48,10 @@ public class TutorialService implements CRUDService<Tutorial> {
     @Override
     public void deleteAll(List<Tutorial> tutorialList) {
         tutorialRepository.deleteAll(tutorialList);
+    }
+
+    @Transactional
+    public List<Tutorial> getByGame(Game game) {
+        return tutorialRepository.findAllByGame(game);
     }
 }
